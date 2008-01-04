@@ -160,6 +160,12 @@ PHP_FUNCTION(hkct_validate_pw)
 		return;
 	}
 
+	if( hash_len == 0 )
+	{
+		php_error( E_WARNING, "second parameter must not be empty." );
+		RETURN_NULL();
+	}
+
 	if( hash_len == 32 )
 	{
 		md5str[0] = '\0';
@@ -174,17 +180,25 @@ PHP_FUNCTION(hkct_validate_pw)
 		*r = '\0';
 		
 		if( apr_strnatcmp( hash, md5str ) == 0 )
+		{
 			RETURN_TRUE;
+		}
 		else
+		{
 			RETURN_FALSE;
+		}
 	}
 	
 	status = apr_password_validate( password, hash );
 
 	if( status == APR_SUCCESS )
+	{
 	   RETURN_TRUE;
+	}
 	else
+	{
 	   RETURN_FALSE;
+	}
 }
 /* }}} */
 
