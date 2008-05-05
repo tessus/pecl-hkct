@@ -20,8 +20,8 @@ if test "$PHP_HKCT" != "no"; then
     done
   fi
   
-  CPPFLAGS=`${APR_DIR}/apr-1-config --cppflags`
-  
+  HKCTFLAGS=`${APR_DIR}/apr-1-config --cppflags`
+ 
   APR_LD=`${APR_DIR}/apr-1-config --link-ld`
   APU_LD=`${APR_DIR}/apu-1-config --link-ld`
 
@@ -34,12 +34,15 @@ if test "$PHP_HKCT" != "no"; then
   APU_INCDIR=`${APR_DIR}/apu-1-config --includedir`
   
   A_LIBS="$APR_LIBS $APU_LIBS"
-    
+  
+  HKCT_CFLAGS=$HKCTFLAGS
+  
   AC_DEFINE(HAVE_HKCT, 1, [ ])
-  PHP_NEW_EXTENSION(hkct, hkct.c, $ext_shared)
+  PHP_NEW_EXTENSION(hkct, hkct.c, $ext_shared,, \\$(HKCT_CFLAGS))
   PHP_ADD_INCLUDE($APR_INCDIR)
   PHP_ADD_INCLUDE($APU_INCDIR)
   PHP_EVAL_LIBLINE($A_LIBS, HKCT_SHARED_LIBADD)
   PHP_EVAL_LIBLINE($APRLIBS, HKCT_SHARED_LIBADD)
+  PHP_SUBST(HKCT_CFLAGS)
 fi
 
