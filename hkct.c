@@ -19,9 +19,7 @@
   +----------------------------------------------------------------------+
 */
 
-/* $Id$ */
-
-#define	MODULE_RELEASE	"$Revision$"
+#define	MODULE_RELEASE	"$Id$"
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"

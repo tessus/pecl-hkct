@@ -1,4 +1,3 @@
-dnl $Id$
 dnl config.m4 for extension hkct
 dnl Author: Helmut K. C. Tessarek
 
