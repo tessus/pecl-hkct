@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
 */
 
-#define	MODULE_RELEASE	"$Id$"
+#define	MODULE_RELEASE	"20131228.1"
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
